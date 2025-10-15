@@ -24,7 +24,27 @@ const answers = [
   "My reply is no"
 ];
 
+// Get the Magic 8-Ball element.
+const magicBall = document.getElementById("magicBall");
+
 // Event listener for the Magic 8-Ball click.
-document.getElementById("magicBall").addEventListener("click", function() {
-  answer.innerText = answers[Math.floor(Math.random() * answers.length)];
+magicBall.addEventListener("click", function() {
+  // Clear the answer before shaking.
+  answer.innerText = "";
+
+  // Add the 'shake' class to start the animation.
+  magicBall.classList.add("shake");
+
+  // Wait for the animation to finish (0.5 seconds).
+  setTimeout(function() {
+    // Remove the 'shake' class so it can be triggered again next time.
+    magicBall.classList.remove("shake");
+
+    // Pick a random answer and show it.
+    // Math.random() gives a number between 0 and 1.
+    // Multiply by answers.length to get a number in the array range.
+    // Math.floor() rounds down to the nearest whole number.
+    const randomIndex = Math.floor(Math.random() * answers.length);
+    answer.innerText = `${answers[randomIndex]}`;
+  }, 500);
 });
